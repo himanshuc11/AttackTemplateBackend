@@ -1,1 +1,1 @@
-console.log("Check 3");
+console.log("Check");
