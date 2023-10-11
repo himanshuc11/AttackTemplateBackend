@@ -1,4 +1,9 @@
 import dotenv from "dotenv" 
-dotenv.config({ path: `.env.${process.env.NODE_ENV}`});
+import { drizzle } from 'drizzle-orm/libsql';
+import { createClient } from '@libsql/client';
 
-console.log("ENV: ", process.env.SECRET);
+dotenv.config({ path: `.env.${process.env.NODE_ENV}`});
+const client = createClient({ url: process.env.DB_URL || "", authToken: process.env.DB_TOKEN || "" });
+const db = drizzle(client);
+
+export default db;
