@@ -7,8 +7,8 @@
   "scripts": {
     "dev": "SET \"NODE_ENV=uat\" && nodemon -L -r dotenv/config --exec node --loader ts-node/esm src/index.ts",
     "prod": "SET \"NODE_ENV=prod\" && nodemon -L -r dotenv/config --exec node --loader ts-node/esm src/index.ts",
-    "generate": "drizzle-kit generate:sqlite",
-    "push": "SET \"NODE_ENV=uat\" && drizzle-kit push:sqlite",
+    "generate": "drizzle-kit generate:pg",
+    "push": "SET \"NODE_ENV=uat\" && drizzle-kit push:pg",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

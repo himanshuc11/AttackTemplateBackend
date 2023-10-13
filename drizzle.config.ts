@@ -1,20 +1,21 @@
-import dotenv from "dotenv" 
+import dotenv from "dotenv";
 import type { Config } from "drizzle-kit";
 
-dotenv.config({ path: `.env.${process.env.NODE_ENV}`});
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
-const config =  {
+const config = {
   schema: "./schema.ts",
   out: "./migrations",
   dbCredentials: {
-    url: process.env.DB_URL || "",
-    authToken: process.env.DB_TOKEN || ""
+    database: process.env.DB_NAME ?? "",
+    host: process.env.DB_HOST ?? "",
+    password: process.env.DB_PASSWORD ?? "",
+    user: process.env.DB_USER ?? "",
+    ssl: true,
   },
+  driver: "pg",
   verbose: true,
   strict: true,
-  driver: "turso"
 } satisfies Config;
-
-console.log(config)
 
 export default config;

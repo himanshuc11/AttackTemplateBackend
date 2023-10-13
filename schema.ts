@@ -1,10 +1,7 @@
-import {
-    sqliteTable,
-    integer,
-    text,
-} from "drizzle-orm/sqlite-core";
-  
-export const users = sqliteTable("users", {
-    id: integer("id").primaryKey({ autoIncrement: true }),
-    last_name: text("username").unique().notNull(),
+import { integer, text, pgTable, jsonb } from "drizzle-orm/pg-core";
+
+export const users = pgTable("users", {
+  emailId: text("email_id").primaryKey(),
+  name: text("name"),
+  setting: jsonb("setting"),
 });
