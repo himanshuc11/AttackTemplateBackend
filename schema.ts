@@ -9,6 +9,7 @@ import {
   time,
   integer,
 } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
 
 export const users = pgTable("users", {
   emailId: text("email_id").primaryKey(),
@@ -27,7 +28,15 @@ export const tasks = pgTable("tasks", {
   isComplete: boolean("is_complete"),
   dueDate: date("due_date"),
   dueTime: time("due_time", { withTimezone: true }),
+  parentTask: integer("parent_task"),
 });
+
+export const taskRelations = relations(tasks, ({ one }) => ({
+  invitee: one(tasks, {
+    fields: [tasks.parentTask],
+    references: [tasks.id],
+  }),
+}));
 
 export const linkTagsTasks = pgTable("link_tags_tasks", {
   taskId: integer("task_id").references(() => tasks.id),
